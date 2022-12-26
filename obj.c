@@ -200,3 +200,36 @@ void randmz_obj(obj_t *object)
         }
     }
 }
+
+
+
+void set_obj(obj_t *object, double value)
+{
+    if(object)
+    {
+        if(object->storage_scheme == COL_MAJOR)
+        {
+            for(int i  = 0; i < object->width; i++)
+            {
+                for(int j = 0; j < object->length; j++)
+                {
+                    *(double *) (object->buf + ((j*object->col_stride + i)*object->size) ) = value;
+                }
+            }
+        }
+        else if(object->storage_scheme == ROW_MAJOR)
+        {
+            for(int i  = 0; i < object->length; i++)
+            {
+                for(int j = 0; j < object->width; j++)
+                {
+                	*(double *) (object->buf + ((j*object->row_stride + i)*object->size) ) = value;
+                }
+            }
+        }
+        else
+        {
+            ;//
+        }
+    }
+}

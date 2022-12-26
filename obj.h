@@ -16,6 +16,10 @@ typedef struct obj{
 	void *buf;
 }obj_t;
 
+typedef struct blksz{
+	dim_t v[HLASP2_FP_TYPES];
+}blksz_t;
+
 void create_obj(
 			dim_t length, dim_t width,
 			dim_t row_strtide, dim_t col_stride,
@@ -36,6 +40,8 @@ dim_t get_col_stride(obj_t *object);
 void disp_obj(obj_t *object);
 
 void disp_obj_with_addr(obj_t *object);
+
+void set_obj(obj_t *object, double value);
 
 
 #endif /* P2_OBJ_H_ */

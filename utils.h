@@ -5,19 +5,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define HLASP2_FP_TYPES 4
+
 enum HLAS_DATATYPES{
 	HLAS_DOUBLE = 0,
 	HLAS_FLOAT,
-	HLAS_DCOMPLEX,
-	HLAS_SCOMPLEX
+	HLAS_SCOMPLEX,
+	HLAS_DCOMPLEX
 };
 
 
 enum HLAS_DATASIZE{
 	HLAS_DOUBLE_SIZE = 8,
 	HLAS_FLOAT_SIZE = 4,
-	HLAS_DCOMPLEX_SIZE = 16,
-	HLAS_SCOMPLEX_SIZE = 8
+	HLAS_SCOMPLEX_SIZE = 16,
+	HLAS_DCOMPLEX_SIZE = 8
 };
 
 enum HLAS_TRANSPOSE{
@@ -41,5 +43,13 @@ typedef unsigned char element_type_t;
 typedef unsigned char element_size_t;
 typedef unsigned char trans_t;
 typedef unsigned char store_type_t;
+
+void micro_blksz_init(dim_t blk_index, dim_t dt, dim_t ft, dim_t sc_t, dim_t dc_t);
+void macro_blksz_init(dim_t blk_index, dim_t dt, dim_t ft, dim_t sc_t, dim_t dc_t);
+dim_t get_mcblock(element_type_t type, dim_t cur_dim);
+dim_t get_kcblock(element_type_t type, dim_t cur_dim);
+dim_t get_ncblock(element_type_t type, dim_t cur_dim);
+void init_default_cntx(void);
+
 
 #endif /* HLAS_UTILS_H_ */
